@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!--Injecting standalone collection types-->
+    <util:list list-class="java.util.LinkedList" id="myBesties">
+        <value>Ronaldo</value>
+        <value>Messi</value>
+        <value>Neymar</value>
+        <value>Bale</value>
+    </util:list>
+
+    <util:set set-class="java.util.HashSet" id="myHashSet">
+        <value>1234</value>
+        <value>5678</value>
+        <value>9101112</value>
+        <value>1234</value> <!-- This will not be inserted because is a SET-->
+    </util:set>
+
+    <util:map map-class="java.util.HashMap" id="myCourses">
+        <entry key="Java Core" value="100" />
+        <entry key="Spring Core" value="1000"/>
+        <entry key="Hibernate" value="2000" />
+        <entry key="Microservices" value="2500" />
+    </util:map>
+
+    <util:properties id="myProp">
+        <prop key="Driver">com.mysql.cj.jdbc.Driver</prop>
+        <prop key="url">mysql:jdbc://localhost:3306/databaseName</prop>
+        <prop key="username">root</prop>
+        <prop key="password">C@mpus(121</prop>
+    </util:properties>
+
+    <bean class="com.springcore.standalone.Person" name="me" >
+        <property name="myFriends">
+            <ref bean="myBesties" />
+        </property>
+
+        <property name="feeStructure" ref="myCourses" />
+
+        <property name="randomSet">
+            <ref bean="myHashSet" />
+        </property>
+
+        <property name="props" ref="myProp" />
+    </bean>
+
+</beans>

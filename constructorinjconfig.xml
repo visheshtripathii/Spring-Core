@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--Constructor Injection-->
+        <bean class="com.springcore.constructorinj.Address" name="add1">
+            <constructor-arg name="street1" value="Noida"/>
+            <constructor-arg name="street2" value="Sector 61"/>
+        </bean>
+
+        <bean class="com.springcore.constructorinj.Student" name="stud1">
+            <constructor-arg name="studentId" value="1"/>
+            <constructor-arg name="studentName" value="Vishesh Tripathi"/>
+            <constructor-arg name="studentEmail" value="vishesh.tripathi@yahoo.com" />
+            <constructor-arg name="address" ref="add1" />
+        </bean>
+
+        <bean class="com.springcore.constructorinj.Addition" name="addition1">
+            <constructor-arg name="a" value="24" type="int"/>
+            <constructor-arg name="b" value="42" type="int"/>
+        </bean>
+</beans>
